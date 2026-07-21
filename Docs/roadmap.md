@@ -4,8 +4,8 @@
 - [x] Expo setup
 - [x] Navigation
 - [x] Theme
-- [ ] Screen component
-- [ ] Header component
+- [x] Screen component
+- [x] Header component
 - [ ] Card component
 - [ ] Button component
 

@@ -44,7 +44,7 @@ src/
     Calender.tsx            # Visual appointment schedule layouts
     Customers.tsx           # Customer database CRUD views
     CustomerDetails.tsx
-    NewBooking.tsx             # Appointment booking wizard
+    NewBooking.tsx          # Appointment booking wizard
     Services.tsx            # Service catalog management
     Settings.tsx            # App preferences and sync controls
 
@@ -60,8 +60,8 @@ src/
 
    Database/                # SQLite local storage abstraction (.ts)
     schema.ts
-    appointmentQueries.ts               # Local table structural definitions
-    customerQueries.ts              # Local CRUD execution scripts
+    appointmentQueries.ts   # Local table structural definitions
+    customerQueries.ts      # Local CRUD execution scripts
     migration.ts            # Database versioning and update scripts
     db.ts
     serviceQueries.ts
