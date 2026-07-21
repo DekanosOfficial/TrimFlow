@@ -2,7 +2,7 @@
 
 A robust, offline-first mobile application with **React Native (Expo)** and **TypeScript**. It features a local **SQLite** cache that syncs with a **FastAPI** backend backed by a local **PostgreSQL** database.
 
-
+```text
 [ Mobile App (React Native/Expo) ]
 |
 ▼ (Offline-First Layer)
@@ -13,6 +13,8 @@ A robust, offline-first mobile application with **React Native (Expo)** and **Ty
 |
 ▼ (Persistent Storage)
 [ PostgreSQL Local DataBase ]
+```
+
 
 ---
 
