@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text } from "react-native";
+import Screen from "../components/Screen"
+import Header from "../components/Header";
 
 export default function App() {
   return (
-    <View style={{
-        flex:1,
-        justifyContent: "center",
-        alignItems: "center",  
-      }}
-    >
-      <Text>Customers</Text>
-    </View>
+    <Screen>
+      <Header
+            title="Customers"
+            subtitle="Manage your clients"
+            />
+    </Screen>
+    
   );
 }

@@ -1,14 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text } from "react-native";
+import Screen from "../components/Screen"
 
 export default function App() {
   return (
-    <View style={{
-        flex:1,
-        justifyContent: "center",
-        alignItems: "center",  
-      }}
-    >
+    <Screen>
       <Text>Services</Text>
-    </View>
+   </Screen>
+    
   );
 }
