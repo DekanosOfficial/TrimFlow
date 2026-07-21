@@ -39,22 +39,39 @@ A robust, offline-first mobile application with **React Native (Expo)** and **Ty
 ```text
 src/
    Screens/                 # Application Screen Components (.tsx)
+    AppointmentDetails.tsx
     Dashboard.tsx           # Overview metrics and quick actions
     Calender.tsx            # Visual appointment schedule layouts
     Customers.tsx           # Customer database CRUD views
-    Booking.tsx             # Appointment booking wizard
+    CustomerDetails.tsx
+    NewBooking.tsx             # Appointment booking wizard
     Services.tsx            # Service catalog management
     Settings.tsx            # App preferences and sync controls
 
+
    Components/              # Reusable UI elements
+    Card.tsx
+    Header.tsx
+    Screen.tsx
 
    Navigation/              # Routing & Tab configurations
     AppNavigator.tsx        # Main React Navigation setup
+    BottomTabs.tsx
 
    Database/                # SQLite local storage abstraction (.ts)
-    schema.ts               # Local table structural definitions
-    queries.ts              # Local CRUD execution scripts
+    schema.ts
+    appointmentQueries.ts               # Local table structural definitions
+    customerQueries.ts              # Local CRUD execution scripts
     migration.ts            # Database versioning and update scripts
+    db.ts
+    serviceQueries.ts
+    
+   theme/
+    colors.ts
+    index.ts
+    radius.ts
+    spacing.ts
+    typography.ts
 
    Hooks/                   # Custom reusable React hooks
    Utils/                   # Shared helper and formatting functions
