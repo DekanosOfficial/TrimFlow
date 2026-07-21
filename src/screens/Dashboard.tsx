@@ -1,10 +1,12 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 import Screen from "../components/Screen"
 import Header from "../components/Header";
 import Card from "../components/Card";
+import StatsCard from "../components/StatsCard";
 
-export default function App() {
+
+export default function Dashboard() {
   return (
     <Screen>
       <Header
@@ -17,6 +19,29 @@ export default function App() {
           Next Appointment
           </Text>
       </Card>
+
+      <View style={{ flexDirection: "row"}}>
+        <StatsCard
+        value="12"
+        label="Today"
+        />
+        <StatsCard
+          value="3"
+          label="Waiting"
+        />
+      </View>
+
+      <View style={{ flexDirection: "row"}}>
+        <StatsCard
+        value="R1350"
+        label="Revenue"
+        />
+        <StatsCard
+          value="24"
+          label="Clients"
+        />
+      </View>
+      
     </Screen>
     
   );
