@@ -23,7 +23,7 @@ export default function StatsCard({ value, label }: StatsCardProps) {
 
 const styles = StyleSheet.create({
 
-    rpw: {
+    row: {
         flexDirection: "row"
     },
 
