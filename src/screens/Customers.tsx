@@ -1,5 +1,8 @@
 import { Colors } from "../theme";
 
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../navigation/types";
 
 import Screen from "../components/Screen"
 import Header from "../components/Header";
@@ -11,11 +14,15 @@ import {
   Text, 
   View, 
   Modal, 
-  TextInput, 
+  TextInput,
   StyleSheet 
 } from "react-native";
 
-
+interface Customer {
+  id: number;
+  name: string;
+  phone: string;
+}
 
 
 export default function Customers() {
@@ -24,6 +31,28 @@ export default function Customers() {
   const [name, setName] = useState("");
 
   const [phone, setPhone] = useState("")
+
+  const [ customers, setCustomers ] = useState<Customer[]>([
+    {
+      id: 1,
+      name: "Dean Davids",
+      phone: "000 000 0000",
+    },
+    {
+      id: 2,
+      name: "Benji BlueBills",
+      phone: "000 000 0001",
+    },
+    {
+      id: 3,
+      name: "Dylan Davids",
+      phone: "000 000 0002",
+    },
+  ])
+
+  type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+  
+  const navigation = useNavigation<NavigationProp>();
   return (
 
     <Screen>
@@ -33,22 +62,27 @@ export default function Customers() {
             />
 
       <SearchBar placeholder="Search Customer..."/>
+
       <PrimaryButton
       title="Add Customer"
       onPress={() => setModalVisible(true)}
       /> 
 
-      <CustomerCard 
-        name="Dean Davids"
-        phone="000 000 0000"  
-      />
-      <CustomerCard 
-        name="Benji Blue Bills"
-        phone="000 000 0001"/>
-      <CustomerCard 
-        name="Dylan Davids"
-        phone="000 000 0002"
-      />
+      
+      {customers.map((customer) => (
+        <CustomerCard
+          key={customer.id}
+          name={customer.name}
+          phone={customer.phone}
+          onPress={() => 
+            navigation.navigate("CustomerDetails", {
+              id: customer.id,
+              name: customer.name,
+              phone: customer.phone,
+            })
+          }
+        />
+      ))}
 
       <Modal 
         visible={modalVisible}
@@ -80,7 +114,14 @@ export default function Customers() {
               <PrimaryButton
                 title="Save"
                 onPress={() => {
-                  console.log(name, phone);
+                  setCustomers([
+                    ...customers,
+                    {
+                      id: Date.now(),
+                      name,
+                      phone,
+                    },
+                  ]);
 
                   setModalVisible(false);
 
