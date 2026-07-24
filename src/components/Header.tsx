@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
 
     subtitle: {
         color: Colors.textSecondary,
-        fontSize: 15,
         marginTop: 4,
     },
 });

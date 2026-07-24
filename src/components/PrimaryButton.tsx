@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         paddingVertical: Spacing.md,
         borderRadius: Radius.lg,
         alignItems:"center",
-        marginBottom: Spacing.lg
+        marginBottom: Spacing.lg,
     },
     title: {
         color: Colors.text,
