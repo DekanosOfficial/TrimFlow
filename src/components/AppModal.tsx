@@ -7,9 +7,11 @@ interface AppModalProps {
     title: string;
     children: ReactNode;
     onClose: () => void;
+    testID? : string;
 }
 
 export default function AppModal({
+    testID,
     visible,
     title,
     children,
@@ -17,6 +19,7 @@ export default function AppModal({
 }: AppModalProps) {
     return (
         <Modal
+            testID={testID}
             visible={visible}
             transparent
             animationType="slide"

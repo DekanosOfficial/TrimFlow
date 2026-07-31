@@ -1,5 +1,12 @@
 import { Colors } from "../theme";
 
+import {
+  Customer,
+  getCustomers,
+  addCustomer,
+} from "../database/customerQueries";
+
+
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
@@ -9,7 +16,7 @@ import Header from "../components/Header";
 import CustomerCard from "../components/CustomerCard";
 import SearchBar from "../components/SearchBar";
 import PrimaryButton from "../components/PrimaryButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   Text, 
   View, 
@@ -18,11 +25,6 @@ import {
   StyleSheet 
 } from "react-native";
 
-interface Customer {
-  id: number;
-  name: string;
-  phone: string;
-}
 
 
 export default function Customers() {
@@ -32,27 +34,21 @@ export default function Customers() {
 
   const [phone, setPhone] = useState("")
 
-  const [ customers, setCustomers ] = useState<Customer[]>([
-    {
-      id: 1,
-      name: "Dean Davids",
-      phone: "000 000 0000",
-    },
-    {
-      id: 2,
-      name: "Benji BlueBills",
-      phone: "000 000 0001",
-    },
-    {
-      id: 3,
-      name: "Dylan Davids",
-      phone: "000 000 0002",
-    },
-  ])
+  const [ customers, setCustomers ] = useState<Customer[]>([]);
 
   type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
   
   const navigation = useNavigation<NavigationProp>();
+
+  function loadCustomers() {
+    const data = getCustomers();
+    setCustomers(data);
+  }
+
+  useEffect(() => {
+    loadCustomers();
+  }, []);
+
   return (
 
     <Screen>
@@ -114,14 +110,8 @@ export default function Customers() {
               <PrimaryButton
                 title="Save"
                 onPress={() => {
-                  setCustomers([
-                    ...customers,
-                    {
-                      id: Date.now(),
-                      name,
-                      phone,
-                    },
-                  ]);
+                  addCustomer(name, phone);
+                  loadCustomers();
 
                   setModalVisible(false);
 

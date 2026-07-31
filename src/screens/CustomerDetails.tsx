@@ -31,7 +31,8 @@ const route = useRoute<CustomerRouteProp>();
 
 const { name, phone } = route.params;
 
-const [modalVisible, setModalVisible] = useState(false);
+const [editModalVisible, setEditModalVisible] = useState(false);
+const [deletemodalVisible, setDeletemodalVisible] = useState(false);
 
 const [editedName, setEditedName] = useState(name);
 
@@ -73,21 +74,22 @@ const [editedPhone, setEditedPhone] = useState(phone)
           <View style={styles.button}>
             <PrimaryButton
               title="Edit"
-              onPress={() => setModalVisible(true)}
+              onPress={() => setEditModalVisible(true)}
             />
           </View>
           <View style={styles.button}>
             <PrimaryButton
               title=" Delete"
-              onPress={() => console.log("Deleted")}
+              onPress={() => setDeletemodalVisible(true)}
             />
           </View>
       </View>
 
       <AppModal
-        visible={modalVisible}
+      testID="editCustomer"
+        visible={editModalVisible}
         title="Edit Customer"
-        onClose={() => setModalVisible(false)}
+        onClose={() => setEditModalVisible(false)}
       >
         <TextInput
           style={styles.input}
@@ -111,7 +113,7 @@ const [editedPhone, setEditedPhone] = useState(phone)
               title="Save"
               onPress={() => {
               console.log(editedName, editedPhone);
-              setModalVisible(false);
+              setEditModalVisible(false);
               }}
               />
           </View>
@@ -120,11 +122,44 @@ const [editedPhone, setEditedPhone] = useState(phone)
               title="Cancel"
               onPress={() => {
                   
-              setModalVisible(false);
+              setEditModalVisible(false);
               }}
             />            
           </View>
         </View>
+      </AppModal>
+
+      <AppModal
+        testID="deleteCustomer"
+        visible={deletemodalVisible}
+        title="Delete Customer"
+        onClose={() => setDeletemodalVisible(false)}>
+        
+        
+        <View style={styles.actions}>
+          <View style={styles.button}>
+            <PrimaryButton
+              title="Delete"
+              onPress={() => {
+                console.log("Deleted");
+                setDeletemodalVisible(false);
+
+              }}
+            />
+          </View>
+          <View style={styles.button}>
+            <PrimaryButton
+              title="Cancel"
+              onPress={() => {
+
+                
+              setDeletemodalVisible(false);
+              }}
+            />
+          </View>
+
+        </View>
+
       </AppModal>
     </Screen>
   );
