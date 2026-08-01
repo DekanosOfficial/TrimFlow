@@ -21,7 +21,7 @@ import { useState } from "react";
 
 import { Colors, Spacing } from "../theme";
 
-import { deleteCustomer } from "../database/customerQueries";
+import { deleteCustomer, updateCustomer } from "../database/customerQueries";
 
 import BackButton from "../components/BackButton";
 
@@ -38,13 +38,13 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 export default function CustomerDetails() {
 const route = useRoute<CustomerRouteProp>();
 
-const { id, name, phone } = route.params;
-
 const [editModalVisible, setEditModalVisible] = useState(false);
 const [deletemodalVisible, setDeletemodalVisible] = useState(false);
 
-const [editedName, setEditedName] = useState(name);
 
+const { id, name, phone } = route.params;
+
+const [editedName, setEditedName] = useState(name);
 const [editedPhone, setEditedPhone] = useState(phone)
 
 const navigation = useNavigation<NavigationProp>();
@@ -52,8 +52,9 @@ const navigation = useNavigation<NavigationProp>();
 
   return (
     <Screen>
+ 
+ 
       <BackButton />
-
       <Header 
         title="Customer Details"
       />
@@ -122,8 +123,10 @@ const navigation = useNavigation<NavigationProp>();
             <PrimaryButton
               title="Save"
               onPress={() => {
-              console.log(editedName, editedPhone);
+              updateCustomer(id, editedName, editedPhone);
+
               setEditModalVisible(false);
+              navigation.goBack();
               }}
               />
           </View>
