@@ -8,7 +8,10 @@ import {
 
 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useNavigation } from "@react-navigation/native";
+import { 
+  useNavigation,
+  useFocusEffect
+ } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 
 import Screen from "../components/Screen"
@@ -16,7 +19,7 @@ import Header from "../components/Header";
 import CustomerCard from "../components/CustomerCard";
 import SearchBar from "../components/SearchBar";
 import PrimaryButton from "../components/PrimaryButton";
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { 
   Text, 
   View, 
@@ -45,9 +48,11 @@ export default function Customers() {
     setCustomers(data);
   }
 
-  useEffect(() => {
-    loadCustomers();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      loadCustomers();
+    }, [])
+  );
 
   return (
 

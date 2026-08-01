@@ -7,5 +7,18 @@ export function initializeDatabase() {
             name TEXT NOT NULL,
             phone TEXT NOT NULL
         );
-    `);
+
+        
+    `
+        // CREATE TABLE IF NOT EXISTS appointments (
+        //     id INTEGER PRIMARY KEY AUTOINCREMENT,
+        //     customer_id,
+        //     service
+        //     date,
+        //     time,
+        //     duration,
+        //     price,
+        //     status
+        // );
+    );
 }

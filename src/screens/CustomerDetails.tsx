@@ -6,6 +6,10 @@ import { RouteProp } from "@react-navigation/native";
 
 import { RootStackParamList } from "../navigation/types";
 
+import { useNavigation } from "@react-navigation/native";
+
+import { NativeStackHeaderProps, NativeStackNavigationProp } from "@react-navigation/native-stack";
+
 import Screen from "../components/Screen"
 import Header from "../components/Header";
 import PrimaryButton from "../components/PrimaryButton";
@@ -16,6 +20,9 @@ import StatsCard from "../components/StatsCard";
 import { useState } from "react";
 
 import { Colors, Spacing } from "../theme";
+
+import { deleteCustomer } from "../database/customerQueries";
+
 import BackButton from "../components/BackButton";
 
 type CustomerRouteProp = RouteProp<
@@ -23,13 +30,15 @@ type CustomerRouteProp = RouteProp<
   "CustomerDetails"
 >;
 
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 
 
 
 export default function CustomerDetails() {
 const route = useRoute<CustomerRouteProp>();
 
-const { name, phone } = route.params;
+const { id, name, phone } = route.params;
 
 const [editModalVisible, setEditModalVisible] = useState(false);
 const [deletemodalVisible, setDeletemodalVisible] = useState(false);
@@ -38,6 +47,7 @@ const [editedName, setEditedName] = useState(name);
 
 const [editedPhone, setEditedPhone] = useState(phone)
 
+const navigation = useNavigation<NavigationProp>();
 
 
   return (
@@ -141,9 +151,8 @@ const [editedPhone, setEditedPhone] = useState(phone)
             <PrimaryButton
               title="Delete"
               onPress={() => {
-                console.log("Deleted");
-                setDeletemodalVisible(false);
-
+                deleteCustomer(id);
+                navigation.goBack();
               }}
             />
           </View>
