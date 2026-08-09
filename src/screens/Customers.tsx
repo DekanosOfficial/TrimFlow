@@ -39,6 +39,8 @@ export default function Customers() {
 
   const [ customers, setCustomers ] = useState<Customer[]>([]);
 
+  const [search, setSearch] = useState("");
+
   type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
   
   const navigation = useNavigation<NavigationProp>();
@@ -54,15 +56,23 @@ export default function Customers() {
     }, [])
   );
 
+  const filterCustomers = customers.filter((customers) =>
+    customers.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
 
     <Screen>
       <Header
             title="Customers"
             subtitle="Manage your clients"
-            />
+      />
 
-      <SearchBar placeholder="Search Customer..."/>
+      <SearchBar
+            placeholder="Search Customer..."
+            value={search}
+            onChangeText={setSearch}
+      />
 
       <PrimaryButton
       title="Add Customer"
@@ -70,7 +80,7 @@ export default function Customers() {
       /> 
 
       
-      {customers.map((customer) => (
+      {filterCustomers.map((customer) => (
         <CustomerCard
           key={customer.id}
           name={customer.name}

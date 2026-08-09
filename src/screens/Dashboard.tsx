@@ -27,7 +27,7 @@ export default function Dashboard() {
       <View style={styles.row}>
         <StatsCard
         value="12"
-        label="Today"
+        label="Today's Appointments"
         />
         <StatsCard
           value="3"
@@ -38,11 +38,11 @@ export default function Dashboard() {
       <View style={styles.row}>
         <StatsCard
         value="R1350"
-        label="Revenue"
+        label="Revenue Today"
         />
         <StatsCard
           value="24"
-          label="Clients"
+          label="Total Customers"
         />
       </View>
       

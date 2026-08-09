@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
         color: Colors.textSecondary,
         fontSize: 15,
         marginTop: 4,
+        textAlign: "center"
     }
 
 });

@@ -4,17 +4,26 @@ import { Colors, Radius, Spacing } from "../theme";
 
 interface SearchBarProp {
     placeholder: string;
+    value: string;
+    onChangeText: (text: string) => void;
 
 }
 
-export default function SearchBar({placeholder}:SearchBarProp) {
+export default function SearchBar({
+    placeholder, 
+    value, 
+    onChangeText
+}:SearchBarProp) {
     return (
         <View style={styles.container}>
             <TextInput style={styles.input}
             placeholder={placeholder}
-            placeholderTextColor={Colors.textSecondary}/>
+            placeholderTextColor={Colors.textSecondary}
+            value={value}
+            onChangeText={onChangeText}
+            />
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
